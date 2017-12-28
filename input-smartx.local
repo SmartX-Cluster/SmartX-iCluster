@@ -1,0 +1,157 @@
+# -*-sh-*-
+# ------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------
+# Template input file to define local variable settings for use with
+# an OpenHPC installation recipe.
+# ------------------------------------------------------------------------------------------------
+
+# ---------------------------
+# SMS (master) node settings
+# ---------------------------
+
+# Hostname for master server (SMS)
+sms_name="${sms_name:-sxhpc-master}"
+                              
+# Local (internal) IP address on SMS
+sms_ip="${sms_ip:-172.20.84.31}"
+#sms_ip="${sms_ip:-210.125.84.31}"
+sms_data_ip="${sms_data_ip:-172.30.84.31}"
+
+# Internal ethernet interface on SMS
+sms_eth_internal="${sms_eth_internal:-em2}"
+#sms_eth_internal="${sms_eth_internal:-eth0}"
+
+# Subnet netmask for internal cluster network
+internal_netmask="${internal_netmask:-255.255.255.0}"
+
+# Provisioning interface used by compute hosts
+#eth_provision="${eth_provision:-eth0}"
+eth_provision="${eth_provision:-eth1}"
+
+# Local ntp server for time synchronization
+ntp_server="${ntp_server:-0.centos.pool.ntp.org}"
+
+# BMC user credentials for use by IPMI
+bmc_username="${bmc_username:-sxohpc}"
+bmc_password="${bmc_password:-sxfederation!!}"
+
+# Additional time to wait for compute nodes to provision (seconds)
+provision_wait="${provision_wait:-300}"
+
+# Flags for optional installation/configuration
+
+enable_mpi_defaults="${enable_mpi_defaults:-1}"
+enable_mpi_opa="${enable_mpi_opa:-0}"
+enable_clustershell="${enable_clustershell:-0}"
+enable_ipmisol="${enable_ipmisol:-0}"
+enable_opensm="${enable_opensm:-0}"
+enable_ipoib="${enable_ipoib:-0}"
+enable_ganglia="${enable_ganglia:-0}"
+enable_genders="${enable_genders:-0}"
+enable_kargs="${enable_kargs:-0}"
+enable_lustre_client="${enable_lustre_client:-0}"
+enable_mrsh="${enable_mrsh:-0}"
+enable_nagios="${enable_nagios:-0}"
+enable_powerman="${enable_powerman:-0}"
+enable_intel_packages="${enable_intel_packages:-1}"
+
+# -------------------------
+# compute node settings
+# -------------------------
+
+# total number of computes
+num_computes="${num_computes:-6}"
+
+# regex and starting prefix that matches defined compute hostnames
+compute_regex="${compute_regex:-sxhpc*}"
+compute_prefix="${compute_prefix:-sxhpc}"
+
+# compute hostnames
+c_name[0]=sxhpc1
+c_name[1]=sxhpc2
+c_name[2]=sxhpc3
+c_name[3]=sxhpc4
+c_name[4]=sxhpc5
+c_name[5]=sxhpc6
+
+# compute node IP addresses
+c_ip[0]=172.20.84.27
+c_ip[1]=172.20.84.28
+c_ip[2]=172.20.84.29
+c_ip[3]=172.20.84.30
+c_ip[4]=172.20.84.32
+c_ip[5]=172.20.84.33
+c_netmask="${c_netmask:-255.255.255.0}"
+
+
+m_ip[0]=210.125.84.27
+m_ip[1]=210.125.84.28
+m_ip[2]=210.125.84.29
+m_ip[3]=210.125.84.30
+m_ip[4]=210.125.84.32
+m_ip[5]=210.125.84.33
+m_gateway="${m_gateway:-210.125.84.1}"
+m_netmask="${m_netmask:-255.255.255.0}"
+
+d_ip[0]=172.30.84.27
+d_ip[1]=172.30.84.28
+d_ip[2]=172.30.84.29
+d_ip[3]=172.30.84.30
+d_ip[4]=172.30.84.32
+d_ip[5]=172.30.84.33
+
+
+# compute node MAC addreses for provisioning interface
+c_mac[0]=00:1e:67:d8:42:4f
+c_mac[1]=00:1e:67:d8:43:c6
+c_mac[2]=00:1e:67:cf:bb:a4
+c_mac[3]=00:1e:67:cf:b8:8e
+c_mac[4]=0c:c4:7a:ca:3c:03
+c_mac[5]=0c:c4:7a:c4:a6:fd
+
+m_mac[0]=00:1e:67:d8:42:4e
+m_mac[1]=00:1e:67:d8:43:c5
+m_mac[2]=00:1e:67:cf:bb:a3
+m_mac[3]=00:1e:67:cf:b8:8d
+m_mac[4]=0c:c4:7a:ca:3c:02
+m_mac[5]=0c:c4:7a:c4:a6:fc
+
+d_mac[0]=68:05:ca:3a:aa:14
+d_mac[1]=68:05:ca:3a:ac:e4
+d_mac[2]=68:05:ca:33:16:e0
+d_mac[3]=68:05:ca:30:5b:40
+d_mac[4]=0c:c4:7a:ca:58:9a
+d_mac[5]=0c:c4:7a:c4:a7:ea
+
+
+
+
+# compute node BMC addresses
+c_bmc[0]=210.125.84.127
+c_bmc[1]=210.125.84.128
+c_bmc[2]=210.125.84.129
+c_bmc[3]=210.125.84.130
+c_bmc[4]=210.125.84.132
+c_bmc[5]=210.125.84.133
+
+#-------------------
+# Optional settings
+#-------------------
+
+# additional arguments to enable optional arguments for bootstrap kernel
+kargs="${kargs:-acpi_pad.disable=1}"
+
+# Lustre MGS mount name
+mgs_fs_name="${mgs_fs_name:-192.168.100.254@o2ib:/lustre1}"
+
+# Subnet netmask for IPoIB network
+ipoib_netmask="${ipoib_netmask:-255.255.0.0}"
+
+# IPoIB address for SMS server
+sms_ipoib="${sms_ipoib:-192.168.0.1}"
+
+# IPoIB addresses for computes
+c_ipoib[0]=192.168.1.1		            
+c_ipoib[1]=192.168.1.2
+c_ipoib[2]=192.168.1.3
+c_ipoib[3]=192.168.1.4
